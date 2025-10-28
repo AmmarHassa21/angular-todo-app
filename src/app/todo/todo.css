@@ -24,13 +24,15 @@ body {
   width: 480px;
   padding: 40px 35px;
   border-radius: 18px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   text-align: center;
   animation: fadeIn 0.7s ease;
 }
 
 h1 {
-  color: #1a56db;
+  color: #444658;
   font-size: 24px;
   font-weight: 700;
 }
@@ -41,19 +43,11 @@ h1 {
   margin: 0;
 }
 
-.user-id {
-  color: #b5b9bf;
-  font-size: 12px;
-  margin-top: 4px;
-  margin-bottom: 25px;
-}
-
 .input-section {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 input {
@@ -69,12 +63,12 @@ input {
 }
 
 input:focus {
-  border-color: #1a56db;
+  border-color: #444658;
   box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
 }
 
 button {
-  background: #1a56db;
+  background: #444658;
   color: white;
   border: none;
   border-radius: 10px;
@@ -82,11 +76,11 @@ button {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-button:hover {
-  background: #1748c4;
+button:active {
+  transform: scale(0.95);
 }
 
 .empty-state {
@@ -101,53 +95,100 @@ button:hover {
 ul {
   list-style: none;
   padding: 0;
-  margin: 0;
-  margin-top: 15px;
+  margin: 15px 0 0;
   text-align: left;
 }
 
 li {
   background: #f8f9fb;
   border: 1px solid #e3e5e9;
-  padding: 12px 14px;
+  padding: 10px 14px;
   border-radius: 10px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.25s ease;
-}
-
-li:hover {
-  background: #eef1f5;
+  animation: slideIn 0.4s ease;
 }
 
 li.completed span {
   text-decoration: line-through;
-  color: #888;
+  color: #999;
 }
 
-.delete {
-  background: transparent;
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+.edit,
+.delete,
+.save,
+.cancel {
+  background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  color: #dc3545;
-  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 4px;
+  transition: transform 0.2s ease, opacity 0.3s ease;
 }
 
-.delete:hover {
-  color: #b30000;
-  transform: scale(1.1);
+.edit img,
+.delete img,
+.save img,
+.cancel img {
+  display: block;
+  opacity: 0.9;
 }
 
+.edit:active,
+.delete:active,
+.save:active,
+.cancel:active {
+  transform: scale(0.9);
+  opacity: 0.6;
+}
+
+
+li input[type='text'] {
+  flex: 1;
+  border: 1px solid #cdd0d4;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 15px;
+  color: #333;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(68, 70, 88, 0.1);
+  transition: all 0.25s ease;
+}
+
+li input[type='text']:focus {
+  border-color: #444658;
+  box-shadow: 0 0 4px rgba(68, 70, 88, 0.2);
+}
+
+/* animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+}
 }
