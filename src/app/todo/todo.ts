@@ -45,8 +45,25 @@ export class TodoComponent {
 
   // ✅ Delete task
   deleteTask(index: number) {
+    const taskToDelete = this.tasks[index];
+
     setTimeout(() => {
-      this.tasks.splice(index, 1);
+      const currentIndex = this.tasks.indexOf(taskToDelete);
+
+      if (currentIndex === -1) {
+        return;
+      }
+
+      this.tasks.splice(currentIndex, 1);
+
+      if (this.editIndex !== null) {
+        if (this.editIndex === currentIndex) {
+          this.cancelEdit();
+        } else if (this.editIndex > currentIndex) {
+          this.editIndex -= 1;
+        }
+      }
+
       this.saveTasks();
     }, 150);
   }
